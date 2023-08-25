@@ -1,0 +1,24 @@
+spring:
+  rabbitmq:
+    host: 192.168.44.128
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+    #开启 confirm 消息机制
+    publisher-confirm-type: correlated
+    #开启 return 消息机制
+    publisher-returns: true
+    #开启消费端必须 ack模式
+    #开启手动ack确认消息
+    listener:
+      simple:
+        # 消息确认方式，其有三种配置方式，分别是none、manual(手动ack) 和auto(自动ack) 默认auto
+        acknowledge-mode: auto
+        retry:
+          #监听重试是否可用
+          enabled: true
+          #最大重试次数 默认为3
+          max-attempts: 5
+          # 传递消息的时间间隔 默认1s
+          initial-interval: 2000
